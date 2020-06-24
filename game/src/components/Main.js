@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Grid from "./Grid";
+// import "../index.css"
+import "./Game.css"
 
 export class Main extends Component {
   constructor() {
     super();
     // These are not in the state because I will have to make reference to them in the state
-    this.speed = 100; //How fats the game will run
+    this.speed = 100; //How fast the game will run
     this.rows = 30; //The size of the rows
     this.cols = 50; //The size of the columns
 

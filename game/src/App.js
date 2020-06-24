@@ -1,6 +1,6 @@
 import React from 'react';
 // import './App.css';
-// import "./index.css"
+import "./index.css"
 import Main from './components/Main';
 
 function App() {
@@ -12,3 +12,4 @@ function App() {
 }
 
 export default App;
+
