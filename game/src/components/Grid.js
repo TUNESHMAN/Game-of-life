@@ -7,8 +7,8 @@ export class Grid extends Component {
     const width = this.props.cols * 14;
     var rowsArr = [];
     var boxClass = "";
-    for (var i = 0; i < this.props.cols.length; i++) {
-      for (var j = 0; j < this.props.cols.length; j++) {
+    for (var i = 0; i < this.props.rows; i++) {
+      for (var j = 0; j < this.props.cols; j++) {
         let boxId = i + "_" + j;
         // I am checking a specific location in the grid to see if true or false. True means on, false means off
         boxClass = this.props.gridFull[i][j] ? "box on" : "box off";

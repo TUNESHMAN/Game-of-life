@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Grid from "./Grid";
-// import "../index.css"
-import "./Game.css"
+import "../index.css"
+// import "./Game.css";
 
 export class Main extends Component {
   constructor() {
@@ -29,6 +29,19 @@ export class Main extends Component {
     this.setState({
       gridFull: gridCopy,
     });
+  };
+
+  seed = () => {
+    let gridCopy = arrayClone(this.state.gridFull);
+    // I did this for loop to go over  every square of the grid to determine its on or off state
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        // In the for loop, a decision is made to turn the square on or off. I achieved this by creating a random number between 0 and 4. If it equals 1,the square is set to true and it is turned ON
+        if (Math.floor(Math.random()) * 4 === 1) {
+          gridCopy[i][j] = true;
+        }
+      }
+    }
   };
   render() {
     return (

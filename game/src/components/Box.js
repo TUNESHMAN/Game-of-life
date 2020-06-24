@@ -11,7 +11,8 @@ export class Box extends Component {
         className={this.props.boxClass}
         id={this.props.id}
         onClick={this.selectBox}
-    >{this.props.boxId}</div>
+    />
+    // {this.props.boxId}</div>
     );
   }
 }
