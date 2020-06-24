@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import Box from "./Box.js";
+import "../index.css"
 
 export class Grid extends Component {
-  constructor() {
-    super();
-  }
   render() {
     const width = this.props.cols * 14;
-    var rowsArray = [];
+    var rowsArr = [];
     var boxClass = "";
     for (var i = 0; i < this.props.cols.length; i++) {
       for (var j = 0; j < this.props.cols.length; j++) {
@@ -14,7 +13,7 @@ export class Grid extends Component {
         // I am checking a specific location in the grid to see if true or false. True means on, false means off
         boxClass = this.props.gridFull[i][j] ? "box on" : "box off";
         // I push some boxes into the array
-        rowsArray.push(
+        rowsArr.push(
           <Box
             boxClass={boxClass}
             key={boxId}
@@ -28,7 +27,7 @@ export class Grid extends Component {
     }
     return (
       <div className="grid" style={{ width: width }}>
-        {{ rowsArray }}
+        {rowsArr}
       </div>
     );
   }

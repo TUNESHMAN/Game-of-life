@@ -17,6 +17,17 @@ export class Main extends Component {
         .map(() => Array(this.cols).fill(false)),
     };
   }
+  selectBox = (row, col) => {
+    //   Here is to update the state of the array depending on which element is selected in the array
+    // Make a copy of the array
+    let gridCopy = arrayClone(this.state.gridFull);
+    // Find the exact square that was clicked
+    gridCopy[row][col] = !gridCopy[row][col];
+    // Update the state
+    this.setState({
+      gridFull: gridCopy,
+    });
+  };
   render() {
     return (
       <div>
@@ -32,6 +43,10 @@ export class Main extends Component {
       </div>
     );
   }
+}
+// I make a clone of the array by stringify and parse. I did this because it is a nested array and the slice method will not be appropriate
+function arrayClone(arr) {
+  return JSON.parse(JSON.stringify(arr));
 }
 
 export default Main;
