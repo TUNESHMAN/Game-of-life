@@ -47,9 +47,44 @@ export class Main extends Component {
     });
   };
 
+  playButton = () => {
+    //   When a person presses the button, the aim is for them to start afresh
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.play, this.speed);
+  };
+
+  play = () => {
+    // The reason for this is to check what the grid looks like before changing the square.
+    let grid1 = this.state.gridFull;
+    let grid2 = arrayClone(this.state.gridFull);
+
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        // Initialize count as 0
+        let count = 0;
+
+        if (i > 0) if (grid1[i - 1][j]) count++;
+        if (i > 0 && j > 0) if (grid1[i - 1][j - 1]) count++;
+        if (i > 0 && j < this.cols - 1) if (grid1[i - 1][j + 1]) count++;
+        if (j < this.cols - 1) if (grid1[i][j + 1]) count++;
+        if (j > 0) if (grid1[i][j - 1]) count++;
+        if (i < this.rows - 1) if (grid1[i + 1][j]) count++;
+        if (i < this.rows - 1 && j > 0) if (grid1[i + 1][j - 1]) count++;
+        if (i < this.rows - 1 && j < this.cols - 1)
+          if (grid1[i + 1][j + 1]) count++;
+        if (grid1[i][j] && (count < 2 || count > 3)) grid2[i][j] = false;
+        if (!grid1[i][j] && count === 3) grid2[i][j] = true;
+      }
+    }
+    this.setState({
+      gridFull: grid2,
+      generation: this.state.generation + 1,
+    });
+  };
   //   This happens after loading
   componentDidMount() {
     this.seed();
+    this.playButton()
   }
   render() {
     return (
