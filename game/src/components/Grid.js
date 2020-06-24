@@ -3,6 +3,8 @@ import React, { Component } from "react";
 export class Grid extends Component {
   constructor() {
     super();
+  }
+  render() {
     const width = this.props.cols * 14;
     var rowsArray = [];
     var boxClass = "";
@@ -11,13 +13,19 @@ export class Grid extends Component {
         let boxId = i + "_" + j;
         // I am checking a specific location in the grid to see if true or false. True means on, false means off
         boxClass = this.props.gridFull[i][j] ? "box on" : "box off";
+        // I push some boxes into the array
         rowsArray.push(
-          <Box boxClass={boxClass} key={boxId} boxId={boxId} row={i} col={j} />
+          <Box
+            boxClass={boxClass}
+            key={boxId}
+            boxId={boxId}
+            row={i}
+            col={j}
+            selectBox={this.props.selectBox}
+          />
         );
       }
     }
-  }
-  render() {
     return (
       <div className="grid" style={{ width: width }}>
         {{ rowsArray }}

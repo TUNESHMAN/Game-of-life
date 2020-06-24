@@ -26,6 +26,7 @@ export class Main extends Component {
           rows={this.rows}
           cols={this.cols}
           gridFull={this.state.gridFull}
+          selectBox={this.selectBox}
         />
         <h2>Generations: {this.state.generation}</h2>
       </div>
