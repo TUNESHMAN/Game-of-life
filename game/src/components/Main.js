@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Grid from "./Grid";
 import "../index.css";
-// import "./Game.css";
+import Buttons from "./Buttons"
 
 export class Main extends Component {
   constructor() {
@@ -53,6 +53,10 @@ export class Main extends Component {
     this.intervalId = setInterval(this.play, this.speed);
   };
 
+  pauseButton = () => {
+    clearInterval(this.intervalId);
+  };
+
   play = () => {
     // The reason for this is to check what the grid looks like before changing the square.
     let grid1 = this.state.gridFull;
@@ -84,12 +88,21 @@ export class Main extends Component {
   //   This happens after loading
   componentDidMount() {
     this.seed();
-    this.playButton()
+    this.playButton();
   }
   render() {
     return (
       <div>
         <h1>The Game of Life</h1>
+        <Buttons
+          playButton={this.playButton}
+          pauseButton={this.pauseButton}
+          slow={this.slow}
+          fast={this.fast}
+          clear={this.clear}
+          seed={this.seed}
+          gridSize={this.gridSize}
+        />
         {/* I created a grid and passed down the state variables as props */}
         <Grid
           rows={this.rows}
