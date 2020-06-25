@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { ButtonToolbar, DropdownButton, Dropdown } from "react-bootstrap";
 
-
 export class Buttons extends Component {
+  handleSelect = (evt) => {
+    this.props.gridSize(evt);
+  };
   render() {
     return (
       <div className="center">

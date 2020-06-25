@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Grid from "./Grid";
 import "../index.css";
-import Buttons from "./Buttons"
+import Buttons from "./Buttons";
 
 export class Main extends Component {
   constructor() {
@@ -47,14 +47,51 @@ export class Main extends Component {
     });
   };
 
+  // This controls the play button
   playButton = () => {
     //   When a person presses the button, the aim is for them to start afresh
     clearInterval(this.intervalId);
     this.intervalId = setInterval(this.play, this.speed);
   };
-
+  // This controls the pause button
   pauseButton = () => {
     clearInterval(this.intervalId);
+  };
+
+  // This contols the slow button
+  slow = () => {
+    // Reduce the speed to 1000 milliseconds
+    this.speed = 1000;
+    this.playButton();
+  };
+
+  // Controls the clear button
+  clear = () => {
+    // Set the grid to its default state
+    var grid = Array(this.rows)
+      .fill()
+      .map(() => Array(this.cols).fill(false));
+    this.setState({
+      gridFull: grid,
+      generation: 0,
+    });
+  };
+
+  gridSize = (size) => {
+    switch (size) {
+      case "1":
+        this.cols = 20;
+        this.rows = 10;
+        break;
+      case "2":
+        this.cols = 50;
+        this.rows = 30;
+        break;
+      default:
+        this.cols = 70;
+        this.rows = 50;
+    }
+    this.clear()
   };
 
   play = () => {
